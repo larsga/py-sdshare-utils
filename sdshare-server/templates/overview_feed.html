@@ -1,0 +1,25 @@
+$def with (server)
+
+<feed xmlns="http://www.w3.org/2005/Atom">
+ <title>$server.get_title()</title>
+ <link href=""/>
+ <updated>2008-12-13T18:30:02Z</updated>
+
+ <author>
+   <name>$server.get_author()</name>
+ </author>
+ 
+ <id>http://www.example.org/collections</id>
+
+ $for coll in server.get_collections():
+   <entry>
+     <title>$coll.get_title()</title>
+  
+       <link rel="http://www.egovpt.org/sdshare/collectionfeed"
+             type="application/atom+xml"
+             href="collection/$coll.get_id()"/> 
+       <id>urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efa6a</id>
+       <updated>2008-12-13T18:30:02Z</updated>
+   </entry>
+
+</feed>

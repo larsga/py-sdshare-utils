@@ -1,0 +1,41 @@
+$def with (coll)
+
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>$coll.get_title()</title>
+  <updated>2008-09-26T11:13:40-01:00</updated>
+  <id>http://www.example.org/collectons/collection-one</id>
+  <author>
+    <name>Lars Marius Garshol</name>
+  </author>
+  <link href="" rel="self"/>
+  
+  <entry>
+    <title>Collection Updates</title>
+    <id>http://www.example.org/collectons/collection-one/fragments</id>
+    <updated>2008-09-11T17:58:39-01:00</updated>
+    <author>
+      <name>SDShare Server</name>
+    </author>
+    <link href="/fragments/$coll.get_id()"
+             rel="alternate" 
+             type="application/atom+xml"/>
+    <link href="/fragments/$coll.get_id()" 
+             rel="http://www.egovpt.org/sdshare/fragmentsfeed" 
+             type="application/atom+xml"/>
+  </entry>
+
+  <entry>
+    <title>Collection Snapshots</title>
+    <id>http://www.example.org/collectons/collection-one/snapshots</id>
+    <updated>2008-09-11T17:58:39-01:00</updated>
+    <author>
+      <name>SDShare Server</name>
+    </author>
+    <link href="/snapshots/$coll.get_id()"
+             rel="alternate"
+             type="application/atom+xml"/>
+    <link href="/snapshots/$coll.get_id()"
+             rel="http://www.egovpt.org/sdshare/snapshotsfeed" 
+             type="application/atom+xml"/>
+  </entry>
+</feed>
