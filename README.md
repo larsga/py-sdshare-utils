@@ -1,7 +1,7 @@
 py-sdshare-utils
 ================
 
-A collection of SDshare utilities written in Python.
+A collection of [SDshare](http://www.sdshare.org) utilities written in Python.
 
 So far it contains:
 
