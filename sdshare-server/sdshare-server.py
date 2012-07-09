@@ -1,5 +1,5 @@
 # coding=utf-8
- 
+
 from java.text import SimpleDateFormat
 from java.sql import Timestamp, SQLException
 from com.ibm.db2.jcc.c import SqlException
