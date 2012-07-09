@@ -584,9 +584,9 @@ def render_ns_decls(decls):
 # --- CONFIG
  
 DRIVERCLASS = "com.ibm.db2.jcc.DB2Driver"
-JDBCURL = "jdbc:db2://155.55.1.82:5023/TDB2"
+JDBCURL = "jdbc:db2://server:5023/thingy"
 USER = "LGB2990"
-PASSWORD = "u54raud1"
+PASSWORD = "secret"
  
 dba = DBAccess()
 server = Server("TPS SDshare server", "Lars Marius Garshol")
