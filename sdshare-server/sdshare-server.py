@@ -1,8 +1,8 @@
-# coding=utf-8
+"""
+A simple SDShare server with pluggable backends based on web.py. The
+code is very much prototype quality.
+"""
 
-#from java.text import SimpleDateFormat
-#from java.sql import Timestamp, SQLException
-#from com.ibm.db2.jcc.c import SqlException
 import os, datetime, cgi, time, traceback, sys, csv
 import web
 from xml.sax import make_parser
@@ -24,38 +24,38 @@ BATCH_SIZE = 10000
  
 class OverviewFeed:
     def GET(self):
-        web.header("Content-Type","application/atom+xml; charset=utf-8")
+        web.header("Content-Type", "application/atom+xml; charset=utf-8")
         return render.overview_feed(server)
  
 class CollectionFeed:
     def GET(self, id):
-        web.header("Content-Type","application/atom+xml; charset=utf-8")
+        web.header("Content-Type", "application/atom+xml; charset=utf-8")
         coll = server.get_collection_by_id(id)
         return render.collection(coll)
  
 class FragmentsFeed:
     def GET(self, id):
-        web.header("Content-Type","application/atom+xml; charset=utf-8")
+        web.header("Content-Type", "application/atom+xml; charset=utf-8")
         params = web.input(since = None)
         coll = server.get_collection_by_id(id)
         return render.fragments(coll, params.since)
  
 class SnapshotsFeed:
     def GET(self, id):
-        web.header("Content-Type","application/atom+xml; charset=utf-8")
+        web.header("Content-Type", "application/atom+xml; charset=utf-8")
         coll = server.get_collection_by_id(id)
         return render.snapshots(coll)
  
 class FragmentService:
     def GET(self, collid, fragid):
-        web.header("Content-Type","application/rdf+xml; charset=utf-8")
+        web.header("Content-Type", "application/rdf+xml; charset=utf-8")
         coll = server.get_collection_by_id(collid)
         frag = coll.get_fragment_by_id(fragid)
         return frag.render()
  
 class SnapshotService:
     def GET(self, id):
-        web.header("Content-Type","application/rdf+xml; charset=utf-8")
+        web.header("Content-Type", "application/rdf+xml; charset=utf-8")
         web.header('Transfer-Encoding', 'chunked')       
         coll = server.get_collection_by_id(id)
         for chunk in coll.snapshot():
