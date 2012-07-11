@@ -1,27 +1,29 @@
-$def with (coll, since, offset)
+$def with (coll, since)
 
 <feed xmlns="http://www.w3.org/2005/Atom"
        xmlns:sdshare="http://www.egovpt.org/sdshare">
   <title>Fragments for $coll.get_title()</title>
   <updated>$coll.get_updated()</updated>
-  <id>http://www.example.org/collectons/collection-one</id>
+  <id>$coll.get_guid()fragmentfeed</id>
   <author>
-    <name>Lars Marius Garshol</name>
+    <name>$coll.get_author()</name>
   </author>
-  <link href="" rel="self"/>
-  <sdshare:ServerSrcLocatorPrefix>$coll.get_uri()</sdshare:ServerSrcLocatorPrefix>
-  $ page = coll.get_fragments(since, offset)
+
+  $ page = coll.get_fragments(since)
   $if page.has_next_page():
     <link rel="next" href="?$page.get_params()"/>
   
   $for frag in page.get_fragments():
     <entry>
-      <title>No title</title>
+      <title>$frag.get_title()</title>
       <id>$frag.get_id()</id>
       <updated>$frag.get_updated()</updated>
       <link href="/fragment/$coll.get_id()/$frag.get_id()"
                rel="alternate" 
                type="$frag.get_syntax()"/>
-      <sdshare:TopicSI>$frag.get_uri()</sdshare:TopicSI>
+      <link href="/fragment/$coll.get_id()/$frag.get_id()"
+               rel="http://www.sdshare.org/2012/core/fragment" 
+               type="$frag.get_syntax()"/>
+      <sdshare:resource>$frag.get_uri()</sdshare:resource>
     </entry>
 </feed>

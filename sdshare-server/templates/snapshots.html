@@ -1,0 +1,20 @@
+$def with (coll)
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Snapshots for $coll.get_title()</title>
+  <updated>$coll.get_updated()</updated>
+  <id>$coll.get_guid()snapshotfeed</id>
+  <author>
+    <name>$coll.get_author()</name>
+  </author>
+
+  <entry>
+    <title>Current snapshot for $coll.get_title()</title>
+    <id>$coll.get_guid()currentsnapshot</id>
+    <updated>$coll.get_updated()</updated>
+    <link href="/snapshot/$coll.get_id()"
+          rel="alternate" type="application/rdf+xml"/>
+    <link href="/snapshot/$coll.get_id()"
+          rel="http://www.sdshare.org/2012/core/snapshot"
+          type="application/rdf+xml"/>
+  </entry>
+</feed>

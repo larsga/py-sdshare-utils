@@ -1,0 +1,21 @@
+<server>
+  <param name="title">SDshare demo server</param>
+  <param name="author">Lars Marius Garshol</param>
+
+  <!-- okay, longer-term we want a much more elegant solution than
+       this, but right now there is no time to implement it, so
+       this will have to do for now -->
+  <backend type="csv">
+    <collection id="customers" title="Customer data">
+      <relation source="customers.csv" type="http://example.org/ont/Customer"
+                pattern="http://example.org/data/customer/%(ID)s"
+                timestamp="LASTMOD">
+        <property uri="http://example.org/ont/name" column="NAME"/>
+        <property uri="http://example.org/ont/address-1" column="ADDRESS1"/>
+        <property uri="http://example.org/ont/address-2" column="ADDRESS2"/>
+        <property uri="http://example.org/ont/zip-code" column="ZIP"/>
+        <property uri="http://example.org/ont/place" column="PLACE"/>
+      </relation>
+    </collection>
+  </backend>
+</server>
