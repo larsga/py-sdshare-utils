@@ -195,7 +195,7 @@ class Fragment:
         return format_atom(self._updated)
  
     def get_syntax(self):
-        return "application/xml+rdf"
+        return "application/rdf+xml"
  
     def get_uri(self):
         return self._feed.make_uri(self._id)
@@ -226,6 +226,8 @@ class CSVFragmentFeed(FragmentFeed):
         lastid = None
         if subset:
             lastid = subset[-1].get_id()
+
+        # FIXME: whoa! we can't do paging...
         return FragmentPage(subset, since, lastid)
 
     def get_type(self):
@@ -378,6 +380,37 @@ class Resource:
                                 (pre, local, cgi.escape(value)))
  
         return "\n".join(rendered)
+
+# --- RDBMS BACKEND
+
+try:
+    import psycopg2
+except ImportError:
+    # okay, it failed, so we can't connect to postgresql, but maybe we
+    # don't need to, so let's deal with that later.
+    pass
+
+class SQLFragmentFeed:
+ 
+    def __init__(self, uripattern, idcol, timecol, table, type, builder, filter = None):
+        self._uripattern = uripattern
+        self._idcol = idcol # FIXME: to be removed, but not right now
+        self._timecol = timecol
+        self._table = table
+        self._type = type
+        self._columns = []
+        self._builder = builder
+        self._filter = filter
+
+    def get_fragments(self, since):
+        "since is a string."
+        pass # returns a FragmentPage object
+ 
+    def get_fragment_by_id(self, id):
+        pass # returns a Fragment object
+ 
+    def snapshot(self):
+        pass # returns the actual snapshot in RDF/XML format
     
 # --- UTILITIES
 
