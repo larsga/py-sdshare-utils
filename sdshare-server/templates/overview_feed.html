@@ -15,6 +15,9 @@ $def with (server)
       <link rel="http://www.sdshare.org/2012/core/collectionfeed"
             type="application/atom+xml"
             href="collection/$coll.get_id()"/> 
+      <link rel="alternate"
+            type="application/atom+xml"
+            href="collection/$coll.get_id()"/> 
       <id>$coll.get_guid()entry</id>
       <updated>$coll.get_updated()</updated>
     </entry>
